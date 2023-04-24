@@ -3,15 +3,9 @@
 /// \date   2023-04
 
 #include "include/io.h"
+#include "include/reg.h"
 #define LATC_ADD  (0x010E)
 #define TRISC_ADD (0x008E)
-
-// escrever em registos
-
-#define REG_TRISC (*((uint8_t*)(TRISC_ADD)))
-
-void write_reg(uint16_t add, uint8_t val) { (*((uint8_t*) ((void*)add))) = val; }
-uint8_t read_reg(uint16_t add) { return (*((uint8_t*) ((void*)add))); }
 
 // io.c
 

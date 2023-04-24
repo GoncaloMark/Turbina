@@ -1,7 +1,7 @@
 OUTPUT_DIR := Debug
 OUTPUT_FILE := ${OUTPUT_DIR}/turbinada.elf
 
-C_SRC := main.c io.c
+C_SRC := main.c io.c reg.c
 
 C_OBJS := $(C_SRC:%.c=${OUTPUT_DIR}/%.p1)
 
@@ -15,11 +15,11 @@ LFLAGS:= -mcpu=16F18324 -Wl,-Map=$(OUTPUT_DIR)/out.map  -DXPRJ_default=default  
 $(C_OBJS): $(OUTPUT_DIR)/%.p1 : %.c
 	@echo Compiling: $<
 	@mkdir -p $(@D)
-	$(CCOMPILER) $(CFLAGS) -o "$@" "$<"
+	@$(CCOMPILER) $(CFLAGS) -o "$@" "$<"
 
 # link
 
-all:	$(OUTPUT_FILE)
+all:	clean $(OUTPUT_FILE)
 
 $(OUTPUT_FILE) : $(C_OBJS)
 	@echo Linking: $@
